@@ -15,7 +15,6 @@ class GenreList extends Component {
 
     render(){
         let genres = this.props.genres
-        console.log(this.props.genres)
         return(
             <div>
                 <p>Genres: </p>

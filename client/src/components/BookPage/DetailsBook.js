@@ -1,53 +1,61 @@
 import React, { Component } from 'react';
-import { getBookDetails } from '../../api/remote'
+import { fetchBookDetails } from '../../actions/bookAction'
+import { connect } from 'react-redux'
 
 
-export default class DetailsBook extends Component {
+class DetailsBook extends Component {
 
     constructor(props){
         super(props)
-
-        this.state = {
-            book:{}
-        }
     }
 
-    componentDidMount(){
-        this.getBook()
-    }
-
-    async getBook(){
+    componentWillMount(){
         let id = this.props.match.params.id
-        const book = await getBookDetails(id)
-        this.setState({book: book})
+        this.props.fetchBook(id)
     }
+    
 
     render(){
+        let book = this.props.book
         return(
             <div className="container">
                 <p>    
                 Book name:
                     <span className="details">  
-                        {this.state.book.name}
+                        {book && book.name}
                     </span><br/>
                 Author:
                     <span className="details">
-                        {this.state.book.author}
+                        {book && book.author}
                     </span><br/>
                 Genre:
                     <span className="details">  
-                        {this.state.book.genre}
+                        {book && book.genre}
                     </span><br/>
                 Date of creation:
                     <span className="details">
-                        {this.state.book.creationDate}
+                        {book && book.creationDate}
                     </span><br/>
                 last updated:
                     <span className="details">
-                        {this.state.book.lastUpdate}
+                        {book && book.lastUpdate}
                     </span><br/>
                 </p>
             </div>
         )
     }
 } 
+
+function mapStateToProps(state){
+    return{
+        book: state.books.book
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        fetchBook: (id) => dispatch(fetchBookDetails(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsBook)

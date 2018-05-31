@@ -11,7 +11,6 @@ class BooksByGenreId extends Component {
 
     componentDidMount(){
         const genre = this.props.match.params.id
-        console.log(this.props.match.params)
         this.props.fetchBooks(genre)
     }
 

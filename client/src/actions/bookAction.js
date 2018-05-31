@@ -1,4 +1,11 @@
-import { FETCH_ALL_BOOKS, FETCH_BOOK_DETAILS, FETCH_BOOK_BY_NAME, FETCH_BOOK_BY_GENRE, FETCH_BOOK_BY_GENRE_ID ,AJAX_ERROR } from './actionTypes'
+import { 
+    FETCH_ALL_BOOKS, 
+    FETCH_BOOK_DETAILS, 
+    FETCH_BOOK_BY_NAME, 
+    FETCH_BOOK_BY_GENRE, 
+    FETCH_BOOK_BY_GENRE_ID, 
+    AJAX_ERROR
+ } from './actionTypes'
 import { getAllBooks, getBookDetails, searchBookByName, searchBooksByGenre, getBookByGenreId } from '../api/remote'
 
 function fetchBooksSucces(data){
@@ -25,6 +32,13 @@ function fetchByGenreSuccess(data){
 function fetchByGenreIdSuccess(data){
     return {
         type: FETCH_BOOK_BY_GENRE_ID,
+        data
+    }
+}
+
+function fetchDetailsSuccess(data){
+    return {
+        type: FETCH_BOOK_DETAILS,
         data
     }
 }
@@ -76,6 +90,20 @@ export function fetchBooksByGenreId(id){
         try{
             const data = await getBookByGenreId(id)
             dispatch(fetchByGenreIdSuccess(data))
+        }catch(error){
+            dispatch({
+                type: AJAX_ERROR,
+                error
+            })
+        }
+    }
+}
+
+export function fetchBookDetails(id){
+    return async (dispatch) => {
+        try{
+            const data = await getBookDetails(id)
+            dispatch(fetchDetailsSuccess(data))
         }catch(error){
             dispatch({
                 type: AJAX_ERROR,

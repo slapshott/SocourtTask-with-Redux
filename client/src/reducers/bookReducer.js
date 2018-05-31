@@ -6,6 +6,10 @@ export default function BookReducer (state = [], action) {
             return {
                 books: action.data
             }
+        case FETCH_BOOK_DETAILS:
+            return {
+                book: action.data
+            }
         case FETCH_BOOK_BY_NAME:
             return {
                 bookByName: action.data
