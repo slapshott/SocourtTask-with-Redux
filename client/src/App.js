@@ -15,6 +15,7 @@ import CreateBook from './components/BookPage/CreateBook';
 import GenreList from './components/GenrePage/GenreList';
 import BooksByGenreId from './components/GenrePage/BooksByGenreId';
 import BooksByGenre from './components/BookPage/BooksByGenre';
+import CreateGenre from './components/GenrePage/CreateGenre';
 
 
 
@@ -47,6 +48,7 @@ class App extends Component {
                     <Route path="/api/book/:id" component={DetailsBook} />
                     {/* Genre */}
                     <Route path="/api/genres/search" component={BooksByGenre} />
+                    <Route path="/api/genre/create" component={CreateGenre} />
                     <Route path="/api/genres" component={GenreList} />
                     <Route path="/api/genre/:id" component={BooksByGenreId} />
                 </Switch>

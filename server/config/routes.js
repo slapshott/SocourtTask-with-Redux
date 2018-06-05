@@ -18,11 +18,11 @@ module.exports = app => {
     app.get('/api/book/:id', controllers.book.getBookById)
     app.post('/api/book/create', controllers.book.createBook)
     
-    
     // Genres
     app.get('/api/genres/search', controllers.genre.searchBookByGenre)
     app.get('/api/genres', controllers.genre.getAllGenres)
     app.get('/api/genre/:id', controllers.genre.getBookByGenre)
+    app.post('/api/genre/create', controllers.genre.createGenre)
 
 
     // Error

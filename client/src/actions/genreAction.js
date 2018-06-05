@@ -1,5 +1,5 @@
-import { FETCH_ALL_GENRES, AJAX_ERROR } from './actionTypes';
-import { getAllGenres } from '../api/remote';
+import { FETCH_ALL_GENRES, CREATE_GENRE, AJAX_ERROR } from './actionTypes';
+import { getAllGenres, createGenre } from '../api/remote';
 
 function fetchGenresSuccess(data){
     return {
@@ -8,7 +8,14 @@ function fetchGenresSuccess(data){
     }
 }
 
-export function fetchGenresAction(){
+function createGenreSuccess(data){
+    return{
+        type: CREATE_GENRE,
+        data
+    }
+}
+
+function fetchGenresAction(){
     return async (dispatch) => {
         try{
             const data = await getAllGenres()
@@ -21,3 +28,19 @@ export function fetchGenresAction(){
         }
     }
 }
+
+function createGenreAction(name, creationDate, lastUpdate){
+    return async (dispatch) => {
+        try{
+            const data = await createGenre(name, creationDate, lastUpdate)
+            dispatch(createGenreSuccess(data))
+        }catch(error){
+            dispatch({
+                type: AJAX_ERROR,
+                error
+            })
+        }
+    }
+}
+
+export { fetchGenresAction, createGenreAction }

@@ -111,6 +111,25 @@ async function createBook(name, author, genre, createDate, lastUpdate){
     }
 }
 
+async function createGenre(name, creationDate, lastUpdate){
+    try{
+        const res = fetch(host + 'api/genre/create' , {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                creationDate,
+                lastUpdate
+            })
+        })
+        return await res.json()
+    }catch(error){
+        return error
+    }
+}
+
 export { 
     register, 
     login, 
@@ -120,5 +139,6 @@ export {
     getBookByGenreId, 
     searchBookByName,
     searchBooksByGenre,
-    createBook
+    createBook,
+    createGenre
 };

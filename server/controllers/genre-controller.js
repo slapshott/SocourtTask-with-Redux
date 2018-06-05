@@ -36,6 +36,20 @@ module.exports = {
             .then((books) => {
                 res.json(books)
             })
+    },
+    createGenre: (req,res) => {
+        const reqBody = req.body
+        console.log(reqBody)
+
+        Genre.create({
+            name: reqBody.name,
+            creationDate: reqBody.creationDate,
+            lastUpdate: reqBody.lastUpdate
+        })
+        .then(() => {
+            res.status(200)
+            res.send(reqBody)
+        })
+        .catch((err) => console.log(err))
     }
-    
 }

@@ -38,8 +38,8 @@ module.exports = {
             res.status(200)
             res.send(reqBody)
         })
-        .catch(err => console.log(err))
-        
+        .catch(err => console.log(err))   
     }
+    
 }
 

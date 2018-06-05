@@ -14,5 +14,6 @@ export const FETCH_BOOK_BY_GENRE_ID = 'FETCH_BOOK_BY_GENRE_ID';
 export const FETCH_BOOK_DETAILS = 'FETCH_BOOK_DETAILS';
 
 export const CREATE_BOOK = 'CREATE_BOOK';
+export const CREATE_GENRE = 'CREATE_GENRE';
 
 export const AJAX_ERROR = 'AJAX_ERROR';
