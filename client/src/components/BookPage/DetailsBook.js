@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 
 class DetailsBook extends Component {
 
-    constructor(props){
-        super(props)
-    }
-
     componentWillMount(){
         let id = this.props.match.params.id
         this.props.fetchBook(id)

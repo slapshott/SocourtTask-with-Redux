@@ -1,6 +1,5 @@
 import { FETCH_ALL_GENRES, AJAX_ERROR } from './actionTypes';
 import { getAllGenres } from '../api/remote';
-import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 
 function fetchGenresSuccess(data){
     return {

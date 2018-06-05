@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutAction, redirect } from './actions/authActions'
 import Header from './components/common/Header';
 import RegisterPage from './components/Auth/RegisterPage';
 import LoginPage from './components/Auth/LoginPage';
@@ -8,10 +10,14 @@ import HomePage from './components/HomePage/HomePage';
 import BookList from './components/BookPage/BookList'
 import DetailsBook from './components/BookPage/DetailsBook';
 import BookByName from './components/BookPage/BookByName';
+import CreateBook from './components/BookPage/CreateBook';
 // Genre
 import GenreList from './components/GenrePage/GenreList';
 import BooksByGenreId from './components/GenrePage/BooksByGenreId';
 import BooksByGenre from './components/BookPage/BooksByGenre';
+
+
+
 
 class App extends Component {
     constructor(props) {
@@ -21,8 +27,9 @@ class App extends Component {
     }
 
     onLogout() {
-        localStorage.clear();
-        this.props.history.push('/');
+        this.props.redirect()
+        this.props.logout()
+        this.props.history.push('/')
     }
 
     render() {
@@ -35,6 +42,7 @@ class App extends Component {
                     <Route path="/register" component={RegisterPage} />
                     {/* Book */}
                     <Route path="/api/books/search" component={BookByName} />
+                    <Route path="/api/book/create" component={CreateBook} />
                     <Route path="/api/books" component={BookList} />
                     <Route path="/api/book/:id" component={DetailsBook} />
                     {/* Genre */}
@@ -47,4 +55,17 @@ class App extends Component {
     }
 }
 
-export default withRouter(App);
+function mapStateToProps (state){
+    return{
+    
+    }
+}
+
+function mapDispatchToProps (dispatch){
+    return{
+        logout: () => dispatch(logoutAction()),
+        redirect: () => dispatch(redirect())
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App)); 

@@ -4,9 +4,17 @@ import {
     FETCH_BOOK_BY_NAME, 
     FETCH_BOOK_BY_GENRE, 
     FETCH_BOOK_BY_GENRE_ID, 
+    CREATE_BOOK,
     AJAX_ERROR
  } from './actionTypes'
-import { getAllBooks, getBookDetails, searchBookByName, searchBooksByGenre, getBookByGenreId } from '../api/remote'
+import { 
+    getAllBooks, 
+    getBookDetails, 
+    searchBookByName, 
+    searchBooksByGenre, 
+    getBookByGenreId ,
+    createBook
+} from '../api/remote'
 
 function fetchBooksSucces(data){
     return {
@@ -43,7 +51,14 @@ function fetchDetailsSuccess(data){
     }
 }
 
-export function fetchBooksAction(){
+function createBookSuccess(data){
+    return{
+        type: CREATE_BOOK,
+        data
+    }
+}
+
+function fetchBooksAction(){
     return async (dispatch) => {
         try{
             const data = await getAllBooks();
@@ -57,7 +72,7 @@ export function fetchBooksAction(){
     }
 }
 
-export function fetchBookByName(name){
+function fetchBookByName(name){
     return async (dispatch) => {
         try{
             const data = await searchBookByName(name)
@@ -71,7 +86,7 @@ export function fetchBookByName(name){
     }
 }
 
-export function fetchBooksByGenre(genre){
+function fetchBooksByGenre(genre){
     return async (dispatch) => {
         try{
             const data = await searchBooksByGenre(genre)
@@ -85,7 +100,7 @@ export function fetchBooksByGenre(genre){
     }
 }
 
-export function fetchBooksByGenreId(id){
+function fetchBooksByGenreId(id){
     return async (dispatch) => {
         try{
             const data = await getBookByGenreId(id)
@@ -99,7 +114,7 @@ export function fetchBooksByGenreId(id){
     }
 }
 
-export function fetchBookDetails(id){
+function fetchBookDetails(id){
     return async (dispatch) => {
         try{
             const data = await getBookDetails(id)
@@ -111,4 +126,27 @@ export function fetchBookDetails(id){
             })
         }
     }
+}
+
+function createBookAction(name, author, genre, creationDate, lastUpdate){
+    return async (dispatch) => {
+        try{
+            const data = await createBook(name, author, genre, creationDate, lastUpdate)
+            dispatch(createBookSuccess(data))
+        }catch(error){
+            dispatch({
+                type: AJAX_ERROR,
+                error
+            })
+        }
+    }
+}
+
+export { 
+    fetchBooksAction,
+    fetchBookByName, 
+    fetchBooksByGenre, 
+    fetchBooksByGenreId, 
+    fetchBookDetails,
+    createBookAction
 }

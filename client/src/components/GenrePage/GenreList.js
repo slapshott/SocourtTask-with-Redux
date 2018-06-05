@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import GenreCard from './GenreCard'
 
 class GenreList extends Component {
-    constructor(props){
-        super(props)
-    }
 
     componentWillMount(){
         this.props.fetchGenres()

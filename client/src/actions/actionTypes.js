@@ -1,3 +1,7 @@
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const REDIRECTED = 'REDIRECTED';
+
 export const FETCH_ALL_BOOKS = 'FETCH_ALL_BOOKS';
 export const FETCH_ALL_GENRES = 'FETCH_ALL_GENRES';
 
@@ -8,5 +12,7 @@ export const SEARCH_BOOK_BY_GENRE = 'SEARCH_BOOK_BY_GENRE';
 
 export const FETCH_BOOK_BY_GENRE_ID = 'FETCH_BOOK_BY_GENRE_ID';
 export const FETCH_BOOK_DETAILS = 'FETCH_BOOK_DETAILS';
+
+export const CREATE_BOOK = 'CREATE_BOOK';
 
 export const AJAX_ERROR = 'AJAX_ERROR';

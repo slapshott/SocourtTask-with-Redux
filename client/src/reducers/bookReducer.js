@@ -1,4 +1,4 @@
-import { FETCH_ALL_BOOKS, FETCH_BOOK_DETAILS, FETCH_BOOK_BY_NAME, FETCH_BOOK_BY_GENRE, FETCH_BOOK_BY_GENRE_ID } from '../actions/actionTypes'
+import { FETCH_ALL_BOOKS, FETCH_BOOK_DETAILS, FETCH_BOOK_BY_NAME, FETCH_BOOK_BY_GENRE, FETCH_BOOK_BY_GENRE_ID, CREATE_BOOK } from '../actions/actionTypes'
 
 export default function BookReducer (state = [], action) {
     switch (action.type) {
@@ -21,6 +21,10 @@ export default function BookReducer (state = [], action) {
         case FETCH_BOOK_BY_GENRE_ID:    
             return{
                 booksByGenreId: action.data
+            }
+        case CREATE_BOOK: 
+            return{
+                createBook: action.data
             }
         default:
             return state

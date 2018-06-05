@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 
 class BooksByGenreId extends Component {
 
-    constructor(props){
-        super(props)
-    }
-
     componentDidMount(){
         const genre = this.props.match.params.id
         this.props.fetchBooks(genre)

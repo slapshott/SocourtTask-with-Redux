@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Input from '../common/Input';
-import { register } from '../../api/remote';
+import { withRouter } from 'react-router-dom';
+import { registerAction } from '../../actions/authActions' 
+import { connect } from 'react-redux'
 
-export default class RegisterPage extends Component {
+class RegisterPage extends Component {
     constructor(props) {
         super(props);
 
@@ -22,9 +24,13 @@ export default class RegisterPage extends Component {
 
     async onSubmit(e) {
         e.preventDefault();
-        console.log(this.state.name)
-        console.log(this.state.password)
-        const res = await register(this.state.name, this.state.password);
+        this.props.register(this.state.name, this.state.password)
+    }
+
+    componentWillReceiveProps(newProps){
+        if(newProps.registerSuccess){
+            this.props.history.push('/login')
+        }
     }
 
     render() {
@@ -58,3 +64,17 @@ export default class RegisterPage extends Component {
         );
     }
 }
+
+function mapStateToProps(state){
+    return {
+        registerSuccess: state.register.success
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        register: (username, password) => dispatch(registerAction(username,password))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RegisterPage))

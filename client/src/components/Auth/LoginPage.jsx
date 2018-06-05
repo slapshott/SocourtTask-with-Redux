@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Input from '../common/Input';
-import { login } from '../../api/remote';
+import { loginAction, redirect } from '../../actions/authActions';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
     constructor(props) {
         super(props);
 
@@ -21,8 +23,14 @@ export default class LoginPage extends Component {
 
     async onSubmitHandler(e) {
         e.preventDefault();
-        const res = await login(this.state.name, this.state.password);
-        console.log(res)
+        this.props.login(this.state.name, this.state.password);
+    }
+
+    componentWillReceiveProps(newProps){
+        if(newProps.loginSuccess){  
+            this.props.redirect()
+            this.props.history.push('/')
+        }
     }
 
     render() {
@@ -49,3 +57,17 @@ export default class LoginPage extends Component {
         );
     }
 }
+
+function mapStateToProps(state){
+    return {
+        loginSuccess: state.login.success
+    }
+}
+function mapDispatchToProps(dispatch){
+    return {
+        login: (username, password) => dispatch(loginAction(username, password)),
+        redirect: () => dispatch(redirect)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginPage))

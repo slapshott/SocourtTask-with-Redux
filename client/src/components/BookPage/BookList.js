@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-import { getAllBooks } from '../../api/remote'
 import BookCard from './BookCard'
 import { fetchBooksAction } from '../../actions/bookAction'
 import { connect } from 'react-redux';
 
 class BookList extends Component {   
-
-    constructor(props){
-        super(props)
-    }
 
     componentWillMount(){
         this.props.fetchBooks()

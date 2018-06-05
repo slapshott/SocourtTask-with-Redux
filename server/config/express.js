@@ -19,6 +19,9 @@ module.exports = app => {
 
     app.use(cookieParser());
     app.use(bodyParser.urlencoded({extended: true}));
+    // the key!!!
+    app.use(bodyParser.json())
+
     app.use(session({
         secret: '123456',
         resave: false,
@@ -33,5 +36,7 @@ module.exports = app => {
         }
         next();
     });
+    app.set('view engine', '.hbs');
 
+    app.use(express.static('./static'));
 };
