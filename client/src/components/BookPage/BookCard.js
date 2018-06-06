@@ -16,7 +16,7 @@ class BookCard extends Component {
     async removeBook(){
         let { id } = this.props
         this.props.deleteBook(id)
-        this.props.history.push('/')
+        // this.props.history.push('/')
     }
 
     render(){
