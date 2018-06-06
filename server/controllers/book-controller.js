@@ -39,6 +39,20 @@ module.exports = {
             res.send(reqBody)
         })
         .catch(err => console.log(err))   
+    },
+    deleteBook: (req,res) => {
+        const id = req.params.id
+        console.log(id)
+
+        Book.findById(id)
+            .then((book) => {
+                Book.deleteOne(book)
+                    .then((book) =>{
+                        console.log(book)
+                    })
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
     }
     
 }

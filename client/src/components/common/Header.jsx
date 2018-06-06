@@ -7,16 +7,16 @@ export default class Header extends Component {
 
         return (
             <header>
-                <NavLink exact to="/" activeClassName="active">Home</NavLink>
-                {loggedIn && <a href="javascript:void(0)" onClick={onLogout}>Logout</a>}
-                {!loggedIn && <NavLink to="/login" activeClassName="active">Login</NavLink>}
-                {!loggedIn && <NavLink to="/register" activeClassName="active">Register</NavLink>}
-                <NavLink to="/api/books" activeClassName="active">Books</NavLink>
-                <NavLink to="/api/genres" activeClassName="active">Genres</NavLink>
-                <NavLink to="/api/books/search" activeClassName="active">Search By Name</NavLink>
-                <NavLink to="/api/genres/search" activeClassName="active">Search By Genre</NavLink>
-                <NavLink to="/api/book/create" activeClassName="active">Create Book</NavLink>
-                <NavLink to="/api/genre/create" activeClassName="active">Create Genre</NavLink>
+                <NavLink exact to="/"  className="button">Home</NavLink>
+                {loggedIn && <a href="javascript:void(0)" onClick={onLogout} className="button">Logout</a>}
+                {!loggedIn && <NavLink to="/login" className="button">Login</NavLink>}
+                {!loggedIn && <NavLink to="/register" className="button">Register</NavLink>}
+                <NavLink to="/api/books" className="button">Books</NavLink>
+                <NavLink to="/api/genres" className="button">Genres</NavLink>
+                <NavLink to="/api/books/search" className="button">Search By Name</NavLink>
+                <NavLink to="/api/genres/search" className="button">Search By Genre</NavLink>
+                <NavLink to="/api/book/create" className="button">Create Book</NavLink>
+                <NavLink to="/api/genre/create" className="button">Create Genre</NavLink>
             </header>
         );
     }

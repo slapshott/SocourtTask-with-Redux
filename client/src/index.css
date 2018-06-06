@@ -12,14 +12,6 @@ header {
   margin: 2em
 }
 
-header a{
-  border: 1px solid black;
-  text-decoration: none;
-  margin: 1em 1em;
-  background-color: rgba(202, 196, 196, 0.842);
-  color: white
-}
-
 .searchField {
   margin: 2em
 }
@@ -38,4 +30,17 @@ span {
 
 p > span {
   color: black
+}
+
+.button {
+  border: 1px solid black;
+  text-decoration: none;
+  margin: 1em 1em;
+  background-color: rgba(202, 196, 196, 0.842);
+  color: white
+}
+
+button {
+  
+  font-style: oblique;
 }

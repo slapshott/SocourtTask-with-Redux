@@ -130,6 +130,17 @@ async function createGenre(name, creationDate, lastUpdate){
     }
 }
 
+async function deleteBook(id){
+    try{
+        const res =  fetch(host + 'api/delete/book/' + id, {
+            method: 'DELETE',
+        })
+        return await res.json()
+    }catch(error){
+        return error
+    }
+}
+
 export { 
     register, 
     login, 
@@ -140,5 +151,6 @@ export {
     searchBookByName,
     searchBooksByGenre,
     createBook,
-    createGenre
+    createGenre,
+    deleteBook
 };
