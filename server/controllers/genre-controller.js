@@ -38,7 +38,7 @@ module.exports = {
             })
     },
     createGenre: (req,res) => {
-        const reqBody = req.body
+        const reqBody = req.body    
         console.log(reqBody)
 
         Genre.create({
@@ -50,6 +50,6 @@ module.exports = {
             res.status(200)
             res.send(reqBody)
         })
-        .catch((err) => console.log(err))
+        .catch(err => console.log(err))
     }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createGenreAction } from '../../actions/genreAction';
 import { connect } from 'react-redux';
+import toastr from 'toastr';
 
 class CreateGenre extends Component {
 
@@ -26,6 +27,12 @@ class CreateGenre extends Component {
         let creationDate = this.state.creationDate;
         let lastUpdate = this.state.lastUpdate;
         this.props.createGenre(name, creationDate, lastUpdate)
+        this.setState({ 
+            name: '',
+            creationDate: '',
+            lastUpdate: ''
+        })
+        toastr.success('Genre added successfully!')
     }
 
 

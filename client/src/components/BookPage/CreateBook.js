@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createBookAction } from '../../actions/bookAction'
 import { connect } from 'react-redux'
+import toastr from 'toastr';
 
 class CreateBook extends Component {
 
@@ -39,6 +40,7 @@ class CreateBook extends Component {
             creationDate: '',
             lastUpdate: ''
         })
+        toastr.success('Book added successfully!')
     }
 
     render(){
