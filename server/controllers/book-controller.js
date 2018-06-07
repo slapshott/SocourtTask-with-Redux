@@ -49,6 +49,9 @@ module.exports = {
                 Book.deleteOne(book)
                     .then((book) =>{
                         console.log(book)
+                        Book.find((books) => {
+                            res.json(books)
+                        })
                     })
                     .catch(err => console.log(err))
             })

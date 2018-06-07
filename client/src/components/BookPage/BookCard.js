@@ -16,12 +16,12 @@ class BookCard extends Component {
     async removeBook(){
         let { id } = this.props
         this.props.deleteBook(id)
-        // this.props.history.push('/')
+        this.props.history.push('/')
     }
 
     render(){
+        console.log(this.props.books)
         let {name, author, genre, id} = this.props 
-        console.log(this.props.books.books)
         return(
             <div className="container">
                 <strong> 
