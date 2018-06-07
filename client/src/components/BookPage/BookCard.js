@@ -20,8 +20,7 @@ class BookCard extends Component {
     }
 
     render(){
-        console.log(this.props.books)
-        let {name, author, genre, id} = this.props 
+        let {name, author, id} = this.props 
         return(
             <div className="container">
                 <strong> 
@@ -36,13 +35,14 @@ class BookCard extends Component {
 
 function mapStateToProps(state){
     return {
-        books: state.books
+
     }
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        deleteBook: (id) => dispatch(deleteBookAction(id))
+        deleteBook: (id) => dispatch(deleteBookAction(id)),
+        fetchBooks: () => dispatch(fetchBooksAction())
     }
 }
 

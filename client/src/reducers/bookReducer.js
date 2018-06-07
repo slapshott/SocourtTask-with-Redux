@@ -36,7 +36,7 @@ export default function BookReducer (state = [], action) {
             }
         case DELETE_BOOK:
             return {
-                deleteBook: state.books
+                deleteBook: action.data
             }
         default:
             return state

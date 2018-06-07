@@ -154,7 +154,9 @@ function createBookAction(name, author, genre, creationDate, lastUpdate){
 function deleteBookAction(id){
     return async (dispatch) => {
         try{
-            const data = await deleteBook(id)
+            await deleteBook(id)
+            let data = await getAllBooks()
+            data = data.filter(b => b._id !== id)
             dispatch(deleteBookSuccess(data))
         }catch(error){
             return error

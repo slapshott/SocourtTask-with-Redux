@@ -42,16 +42,13 @@ module.exports = {
     },
     deleteBook: (req,res) => {
         const id = req.params.id
-        console.log(id)
 
         Book.findById(id)
             .then((book) => {
                 Book.deleteOne(book)
                     .then((book) =>{
-                        console.log(book)
-                        Book.find((books) => {
-                            res.json(books)
-                        })
+                        res.status(200)
+                        res.json(book)
                     })
                     .catch(err => console.log(err))
             })
