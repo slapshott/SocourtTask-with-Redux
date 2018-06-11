@@ -53,6 +53,17 @@ module.exports = {
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
+    },
+    editBook: (req,res) => {
+        console.log(req.body)
+        let id = req.body.id
+        let book = req.body
+
+        Book.findByIdAndUpdate(id,book)
+            .then((book) => {
+                console.log(book)
+            })
+            .catch(err => console.log(err))
     }
     
 }

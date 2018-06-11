@@ -27,6 +27,7 @@ class BookCard extends Component {
                     <span>{name} by {author}</span><br/>
                     <Link to={'/api/book/' + id} className="button">View Details</Link>
                     <button className="button" onClick={this.removeBook}>Delete Book</button>
+                    <Link to={'/api/edit/book/' + id} className="button">Edit Book</Link>
                 </strong>
             </div>
         )

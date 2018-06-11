@@ -113,7 +113,7 @@ async function createBook(name, author, genre, createDate, lastUpdate){
 
 async function createGenre(name, creationDate, lastUpdate){
     try{
-        const res = fetch(host + 'api/genre/create' , {
+        const res = await fetch(host + 'api/genre/create' , {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -132,8 +132,30 @@ async function createGenre(name, creationDate, lastUpdate){
 
 async function deleteBook(id){
     try{
-        const res =  fetch(host + 'api/delete/book/' + id, {
+        const res = await fetch(host + 'api/delete/book/' + id, {
             method: 'DELETE',
+        })
+        return await res.json()
+    }catch(error){
+        return error
+    }
+}
+
+async function editBook(name, author, genre, creationDate, lastUpdate, id){
+    try{
+        const res = await fetch(host + 'api/edit/book/' + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                author,
+                genre,
+                creationDate,
+                lastUpdate,
+                id
+            })
         })
         return await res.json()
     }catch(error){
@@ -152,5 +174,6 @@ export {
     searchBooksByGenre,
     createBook,
     createGenre,
-    deleteBook
+    deleteBook,
+    editBook
 };

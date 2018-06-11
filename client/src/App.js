@@ -11,11 +11,13 @@ import BookList from './components/BookPage/BookList'
 import DetailsBook from './components/BookPage/DetailsBook';
 import BookByName from './components/BookPage/BookByName';
 import CreateBook from './components/BookPage/CreateBook';
+import EditBook from './components/BookPage/EditBook';
 // Genre
 import GenreList from './components/GenrePage/GenreList';
 import BooksByGenreId from './components/GenrePage/BooksByGenreId';
 import BooksByGenre from './components/BookPage/BooksByGenre';
 import CreateGenre from './components/GenrePage/CreateGenre';
+
 
 
 
@@ -46,6 +48,7 @@ class App extends Component {
                     <Route path="/api/book/create" component={CreateBook} />
                     <Route path="/api/books" component={BookList} />
                     <Route path="/api/book/:id" component={DetailsBook} />
+                    <Route path="/api/edit/book/:id" component={EditBook} />
                     {/* Genre */}
                     <Route path="/api/genres/search" component={BooksByGenre} />
                     <Route path="/api/genre/create" component={CreateGenre} />

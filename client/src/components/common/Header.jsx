@@ -16,7 +16,6 @@ export default class Header extends Component {
                 <NavLink to="/api/books/search" className="button">Search By Name</NavLink>
                 <NavLink to="/api/genres/search" className="button">Search By Genre</NavLink>
                 <NavLink to="/api/book/create" className="button">Create Book</NavLink>
-                <NavLink to="/api/genre/create" className="button">Create Genre</NavLink>
             </header>
         );
     }
