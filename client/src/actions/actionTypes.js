@@ -17,5 +17,6 @@ export const CREATE_BOOK = 'CREATE_BOOK';
 export const CREATE_GENRE = 'CREATE_GENRE';
 
 export const DELETE_BOOK = 'DELETE_BOOK';
+export const EDIT_BOOK = 'EDIT_BOOK';
 
 export const AJAX_ERROR = 'AJAX_ERROR';

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { editBook } from '../../api/remote'
+import { editBookAction } from '../../actions/bookAction'
+import { connect } from 'react-redux'
 
-
-export default class EditBook extends Component {
+class EditBook extends Component {
 
     constructor(props){
         super(props)
@@ -24,6 +24,10 @@ export default class EditBook extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    componentWillMount(){
+        console.log(this.props.book)
+    }
+
     async onSubmit(e){
         e.preventDefault();
         let id = this.props.match.params.id
@@ -33,7 +37,7 @@ export default class EditBook extends Component {
         let creationDate = this.state.creationDate;
         let lastUpdate = this.state.lastUpdate
         
-        editBook(name,author,genre,creationDate,lastUpdate,id)
+        this.props.editBook(name,author,genre,creationDate,lastUpdate,id)
         this.setState({ 
             name: '',
             author: '',
@@ -102,3 +106,17 @@ export default class EditBook extends Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    return{
+        book: state.book
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        editBook: (name,author,genre,creationDate,lastUpdate,id) => dispatch(editBookAction(name, author, genre, creationDate, lastUpdate, id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditBook)

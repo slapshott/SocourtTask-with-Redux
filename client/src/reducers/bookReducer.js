@@ -5,7 +5,8 @@ import {
     FETCH_BOOK_BY_GENRE, 
     FETCH_BOOK_BY_GENRE_ID, 
     CREATE_BOOK,
-    DELETE_BOOK
+    DELETE_BOOK,
+    EDIT_BOOK
 } from '../actions/actionTypes'
 
 export default function BookReducer (state = [], action) {
@@ -37,6 +38,10 @@ export default function BookReducer (state = [], action) {
         case DELETE_BOOK:
             return {
                 deleteBook: action.data
+            }
+        case EDIT_BOOK:
+            return {
+                book: state
             }
         default:
             return state

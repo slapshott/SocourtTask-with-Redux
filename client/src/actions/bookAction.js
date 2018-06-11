@@ -6,6 +6,7 @@ import {
     FETCH_BOOK_BY_GENRE_ID, 
     CREATE_BOOK,
     DELETE_BOOK,
+    EDIT_BOOK,
     AJAX_ERROR
  } from './actionTypes'
 import { 
@@ -15,7 +16,8 @@ import {
     searchBooksByGenre, 
     getBookByGenreId ,
     createBook,
-    deleteBook
+    deleteBook,
+    editBook
 } from '../api/remote'
 
 function fetchBooksSucces(data){
@@ -63,6 +65,13 @@ function createBookSuccess(data){
 function deleteBookSuccess(data){
     return{
         type: DELETE_BOOK,
+        data
+    }
+}
+
+function editBookSucces(data){
+    return {
+        type: EDIT_BOOK,
         data
     }
 }
@@ -159,7 +168,24 @@ function deleteBookAction(id){
             data = data.filter(b => b._id !== id)
             dispatch(deleteBookSuccess(data))
         }catch(error){
-            return error
+            dispatch({
+                type: AJAX_ERROR,
+                error
+            })
+        }
+    }
+}
+
+function editBookAction(name, author, genre, creationDate, lastUpdate, id){
+    return async (dispatch) => {
+        try{
+            let data = await editBook(name, author, genre, creationDate, lastUpdate, id)
+            dispatch(editBookSucces(data))
+        }catch(error){
+            dispatch({
+                type: AJAX_ERROR,
+                error
+            })
         }
     }
 }
@@ -171,5 +197,6 @@ export {
     fetchBooksByGenreId, 
     fetchBookDetails,
     createBookAction,
-    deleteBookAction
+    deleteBookAction,
+    editBookAction
 }
